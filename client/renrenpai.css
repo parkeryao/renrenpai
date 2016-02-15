@@ -1,0 +1,9 @@
+/* CSS declarations go here */
+.center{
+	text-align: center;
+}
+
+.loginTitle{
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
