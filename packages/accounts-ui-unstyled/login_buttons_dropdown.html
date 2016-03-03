@@ -3,14 +3,10 @@
 <!--           -->
 <template name="_loginButtonsLoggedInDropdown">
   <div class="login-link-and-dropdown-list">
-    <a class="login-link-text" id="login-name-link">
-      {{displayName}} ▾
-    </a>
 
-    {{#if dropdownVisible}}
+
       <div id="login-dropdown-list" class="accounts-dialog">
-        <a class="login-close-text">Close</a>
-        <div class="login-close-text-clear"></div>
+        
 
         {{#if inMessageOnlyFlow}}
           {{> _loginButtonsMessages}}
@@ -22,7 +18,7 @@
           {{/if}}
         {{/if}}
       </div>
-    {{/if}}
+
   </div>
 </template>
 
@@ -44,28 +40,13 @@
 <!-- LOGGED OUT -->
 <!--            -->
 <template name="_loginButtonsLoggedOutDropdown">
-  <div class="login-link-and-dropdown-list {{additionalClasses}}">
-    {{#if dropdownVisible}}
-      {{! This text is covered by the dropdown, but duplicating it here
-          makes the position of "Close" match the position of this text. }}
-      <a class="login-link-text" id="login-sign-in-link">Sign in ▾</a>
-      <div id="login-dropdown-list" class="accounts-dialog">
-        <a class="login-close-text">Close</a>
-        {{#if loggingIn}}
-          {{> _loginButtonsLoggingIn}}
-        {{/if}}
-        <div class="login-close-text-clear"></div>
-        {{> _loginButtonsLoggedOutAllServices}}
-      </div>
-    {{else}}
-      {{#if loggingIn}}
-        {{! Not normally visible, but if the user closes the dropdown during login.}}
-        {{> _loginButtonsLoggingIn}}
-      {{else}}
-        <a class="login-link-text" id="login-sign-in-link">Sign in ▾</a>
-      {{/if}}
+  {{! This text is covered by the dropdown, but duplicating it here
+      makes the position of "Close" match the position of this text. }}
+    {{#if loggingIn}}
+      {{> _loginButtonsLoggingIn}}
     {{/if}}
-  </div>
+    <div class="login-close-text-clear"></div>
+    {{> _loginButtonsLoggedOutAllServices}}
 </template>
 
 <template name="_loginButtonsLoggedOutAllServices">
@@ -74,6 +55,7 @@
       {{#if hasOtherServices}} {{! the password service will always come last }}
         {{> _loginButtonsLoggedOutPasswordServiceSeparator}}
       {{/if}}
+      
       {{> _loginButtonsLoggedOutPasswordService}}
     {{else}}
       {{> _loginButtonsLoggedOutSingleLoginButton}}
@@ -97,19 +79,23 @@
   {{#if inForgotPasswordFlow}}
     {{> _forgotPasswordForm}}
   {{else}}
-    <div class="login-form login-password-form">
+    <div class="login-form login-password-form container">
       {{#each fields}}
         {{> _loginButtonsFormField}}
       {{/each}}
 
-      {{> _loginButtonsMessages}}
+      <div class="row">
+        {{> _loginButtonsMessages}}
+      </div>
 
-      <div class="login-button login-button-form-submit" id="login-buttons-password">
-        {{#if inSignupFlow}}
-          Create account
-        {{else}}
-          Sign in
-        {{/if}}
+      <div class="container">
+        <div class="login-button login-button-form-submit" id="login-buttons-password">
+          {{#if inSignupFlow}}
+            <div class="row">Create account</div>
+          {{else}}
+            <div class="row">Sign in</div>
+          {{/if}}
+        </div>
       </div>
 
       {{#if inLoginFlow}}
@@ -178,11 +164,17 @@ https://gist.github.com/968927
 
 <template name="_loginButtonsFormField">
   {{#if visible}}
-    <div id="login-{{fieldName}}-label-and-input">
-      <label id="login-{{fieldName}}-label" for="login-{{fieldName}}">
-        {{fieldLabel}}
-      </label>
-      <input id="login-{{fieldName}}" type="{{inputType}}" />
+    <div id="login-{{fieldName}}-label-and-input row">
+      
+      <div class="col-xs-6">
+        <div id="login-{{fieldName}}-label " for="login-{{fieldName}}">
+          {{fieldLabel}}
+        </div>
+      </div>
+      <div class="col-xs-6">
+        <input id="login-{{fieldName}}" type="{{inputType}}" />
+      </div>
+      
     </div>
   {{/if}}
 </template>

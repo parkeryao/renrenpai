@@ -130,7 +130,10 @@ Template._loginButtonsLoggedOut.helpers({
   // decide whether we should show a dropdown rather than a row of
   // buttons
 Template._loginButtonsLoggedIn.helpers({
-  dropdown: dropdown
+  // dropdown: dropdown
+  
+  // make the login form unfolded
+  dropdown: false
 });
 
 

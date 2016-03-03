@@ -23,13 +23,10 @@
 </template>
 
 <template name="_loginButtonsLoggedIn">
-  {{#if dropdown}}
-    {{> _loginButtonsLoggedInDropdown}}
-  {{else}}
+
     <div class="login-buttons-with-only-one-button">
       {{> _loginButtonsLoggedInSingleLogoutButton}}
     </div>
-  {{/if}}
 </template>
 
 <template name="_loginButtonsLoggedOut">
